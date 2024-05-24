@@ -1,0 +1,15 @@
+2024-05-24 10:37:40.814 +03:00 [WRN] The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert.
+2024-05-24 10:37:40.930 +03:00 [INF] Now listening on: https://localhost:7082
+2024-05-24 10:37:40.931 +03:00 [INF] Now listening on: http://localhost:5192
+2024-05-24 10:37:40.935 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-05-24 10:37:40.935 +03:00 [INF] Hosting environment: Development
+2024-05-24 10:37:40.936 +03:00 [INF] Content root path: /mnt/sdb1/projects/dotnet/pluralsight/CityInfo/CityInfo.API
+2024-05-24 10:37:50.073 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7082/api/cities/10/PointOfInterest - null null
+2024-05-24 10:37:50.134 +03:00 [INF] Executing endpoint 'CityInfo.API.Controllers.PointOfInterestController.GetPointsOfInterest (CityInfo.API)'
+2024-05-24 10:37:50.157 +03:00 [INF] Route matched with {action = "GetPointsOfInterest", controller = "PointOfInterest"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[CityInfo.API.Models.PointOfInterestDto]] GetPointsOfInterest(Int32) on controller CityInfo.API.Controllers.PointOfInterestController (CityInfo.API).
+2024-05-24 10:37:50.173 +03:00 [INF] City with id: 10 wasn't found when accessing points of interest.
+2024-05-24 10:37:50.181 +03:00 [INF] Executing NotFoundObjectResult, writing value of type 'System.String'.
+2024-05-24 10:37:50.191 +03:00 [INF] Executed action CityInfo.API.Controllers.PointOfInterestController.GetPointsOfInterest (CityInfo.API) in 26.1799ms
+2024-05-24 10:37:50.198 +03:00 [INF] Executed endpoint 'CityInfo.API.Controllers.PointOfInterestController.GetPointsOfInterest (CityInfo.API)'
+2024-05-24 10:37:50.200 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7082/api/cities/10/PointOfInterest - 404 null text/plain; charset=utf-8 130.0605ms
+2024-05-24 10:45:02.670 +03:00 [INF] Application is shutting down...
