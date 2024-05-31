@@ -1,4 +1,6 @@
+using CityInfo.API.AppDbContext;
 using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
 
 
@@ -19,12 +21,14 @@ builder.Services.AddControllers(options=>{
 }).AddXmlDataContractSerializerFormatters();
 
 builder.Services.AddProblemDetails(); //Global Handling error use with  app.UseExceptionHandler(); In PRODUCTION to making a friendly error msg
-
 builder.Services.AddEndpointsApiExplorer();
-
 builder.Services.AddSwaggerGen();
-
 builder.Services.AddSingleton<FileExtensionContentTypeProvider>();
+builder.Services.AddDbContext<CityInfoDbContext>(dbContextOptions=>{
+    dbContextOptions.UseSqlite(
+        builder.Configuration["ConnectionStrings:CityInfoDBConnectionString"]
+    );
+});
 
 
 var app = builder.Build();
