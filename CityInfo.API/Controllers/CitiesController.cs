@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using AutoMapper;
 using CityInfo.API.Models;
@@ -15,24 +16,38 @@ namespace CityInfo.API.Controllers
     {
         private readonly ICityInfoRepository _cityInfoRepository;
         private readonly IMapper _mapper;
+        const int maxCitiesPageSize = 20;
 
         public CitiesController(
             ICityInfoRepository cityInfoRepository,
             IMapper mapper
         )
         {
-            _cityInfoRepository = cityInfoRepository;
+            this._cityInfoRepository = cityInfoRepository;
             this._mapper = mapper;
         }
 
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CityWithoutPointsOfInterestDto>>> GetCities()
+        public async Task<ActionResult<IEnumerable<CityWithoutPointsOfInterestDto>>> GetCities(
+            [FromQuery] string? name,
+            [FromQuery] string? searchQuery,
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int pageSize = 10
+        )
         {
-            var citiesToReturn = await _cityInfoRepository.GetCitiesAsync();
+            if(pageSize > maxCitiesPageSize)
+            {
+                pageSize = maxCitiesPageSize;
+            }
+
+            var (citiesToReturn, paginationMetaData) = await _cityInfoRepository.GetCitiesAsync(name,searchQuery,pageNumber,pageSize) ;
 
             if(citiesToReturn == null) return NotFound();
-        
+            
+            Response.Headers.Add("X-Pagination",
+                JsonSerializer.Serialize(paginationMetaData));
+
             var result = _mapper.Map<IEnumerable<CityWithoutPointsOfInterestDto>>(citiesToReturn);
             
             return Ok(result);
