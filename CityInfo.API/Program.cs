@@ -1,8 +1,8 @@
 using CityInfo.API.AppDbContext;
+using CityInfo.API.Services;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
-
 
 Log.Logger = new LoggerConfiguration()
 .MinimumLevel.Information()
@@ -30,6 +30,10 @@ builder.Services.AddDbContext<CityInfoDbContext>(dbContextOptions=>{
     );
 });
 
+
+builder.Services.AddScoped<ICityInfoRepository, CityInfoRepository>();
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 

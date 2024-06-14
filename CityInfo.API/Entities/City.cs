@@ -9,8 +9,8 @@ namespace CityInfo.API.Entities
     {
         public int Id { get; set;}
         public string Name { get; set;}
-        public string Description { get; set; }
-        public ICollection<PointOfInterest> MyProperty { get; set; } = new List<PointOfInterest>();
+        public string Description { get; set; } = string.Empty;
+        public ICollection<PointOfInterest> PointOfInterest { get; set; } = new List<PointOfInterest>();
 
         public City(string name)
         {
