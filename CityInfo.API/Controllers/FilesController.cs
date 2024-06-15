@@ -7,11 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.IO;
 using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CityInfo.API.Controllers
 {
     [Route("api/files")]
     [ApiController]
+    [Authorize]
     public class FilesController : Controller
     {
         private readonly FileExtensionContentTypeProvider _fex;
